@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片上传测试</title>
+</head>
+<body>
+<input type="file" name="upfile" id="upfile" multiple="multiple" accept="image/*" capture="camera" />
+
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/load-image.all.min.js"></script>
+<script type="text/javascript">
+    function guidGenerator() {
+        var S4 = function() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        };
+        return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+
+    function upload(fileData){
+        var fileName = guidGenerator()+".png";
+        //上传操作
+        //返回promise对象
+    }
+
+    loadImage.upload({
+        domid: "upfile",
+        multiple: true,
+        before: function(){console.log("before");},
+        fail: function(failMsg,file){console.log("fail",failMsg,file);},
+        success: function(result,file){console.log("success",result,file);},
+        complete: function(){console.log("complete");},
+        progress: function(total,remainder){console.log("progress",total,remainder);},
+        uploadAction: upload,
+        type: 'image/png',
+        quality: 0.8,
+        dataType: 'base64',
+        maxWidth: 400,
+        maxHeight: 400
+    });
+</script>
+</body>
+</html>
